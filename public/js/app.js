@@ -11705,7 +11705,7 @@ new Vue({
                 parent: document.querySelector('nav.main-menu'),
                 overlay: document.querySelector('div.main-menu-overlay'),
                 body: document.querySelector('body'),
-                wrapper: document.querySelector('div.wrapper'),
+                container: document.querySelector('div.container'),
                 button: document.querySelector('button.main-menu-button')
             }
         }
@@ -11744,7 +11744,7 @@ new Vue({
             this.menu.elements.body.classList.add('main-menu-active');
             this.menu.elements.parent.classList.add('main-menu-active');
             this.menu.elements.overlay.classList.add('main-menu-active');
-            this.menu.elements.wrapper.classList.add('main-menu-active');
+            this.menu.elements.container.classList.add('main-menu-active');
 
             this.menu.open = true;
         },
@@ -11752,7 +11752,7 @@ new Vue({
             this.menu.elements.body.classList.remove('main-menu-active');
             this.menu.elements.parent.classList.remove('main-menu-active');
             this.menu.elements.overlay.classList.remove('main-menu-active');
-            this.menu.elements.wrapper.classList.remove('main-menu-active');
+            this.menu.elements.container.classList.remove('main-menu-active');
 
             this.menu.open = false;
         }

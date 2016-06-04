@@ -1,18 +1,27 @@
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/foundation-sites/scss/foundation";
+@import "node_modules/iconfonts/stylesheets/font-awesome";
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+@include foundation-global-styles;
+@include foundation-typography;
+@include foundation-flex-classes;
+@include foundation-flex-grid;
+
+@include fa-font;
 
 body {
     background-color: #fff;
     font-family: "Montserrat", sans-serif;
     overflow-y: scroll;
     overflow-x: hidden;
+    margin: 0;
 }
 
 /**
  * Some color variables.
  */
-$primary-color: #E6624E;
-$secondary-color: #4E97E6;
+$layout-primary-color: #E6624E;
+$layout-secondary-color: #4E97E6;
 
 /**
  * When the menu is active we want to hide an awkward overflow.
@@ -20,19 +29,8 @@ $secondary-color: #4E97E6;
 body.main-menu-active {
 }
 
-a:hover {
+a, a:hover {
     text-decoration: none;
-}
-
-/**
- * Adjust the default padding and margin for the fluid container and row.
- */
-.container-fluid {
-    padding: 0 24px;
-}
-
-.row {
-    margin: 0 -24px;
 }
 
 /**
@@ -42,18 +40,18 @@ a:hover {
  */
 div.topbar {
     z-index: 10;
-    background-color: $primary-color;
-    height: 64px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $layout-primary-color;
     width: 100%;
-    line-height: 64px;
-    margin: 0 !important;
     color: #fff;
     text-transform: uppercase;
+    font-size: 1.25rem;
 
-    &.fixed-to-top {
-        position: fixed;
-        top: 0;
-        left: 0;
+    &, ul > li {
+        height: 64px;
+        line-height: 64px;
     }
 
     /**
@@ -63,10 +61,18 @@ div.topbar {
         background: none;
         border: none;
         outline: none;
-    }
+        color: #fff;
+        line-height: 32px;
+        height: 64px;
+        cursor: pointer;
 
-    div.logo {
-        font-size: 2rem;
+        &.main-menu-button:before {
+            @include fa-icon("bars");
+        }
+
+        &.cart:before {
+            @include fa-icon("shopping-cart");
+        }
     }
 
     @media all and (max-width: 481px) {
@@ -88,17 +94,17 @@ div.topbar {
     div.right-menu,
     div.left-menu {
         button {
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
     }
 
     div.right-menu,
     div.left-menu {
-        button, a {
+        button, button:before, a {
             transition: color 0.25s;
         }
 
-        button:hover,
+        button:hover:before,
         a:hover {
             color: #F2CCC7;
         }
@@ -125,21 +131,6 @@ div.topbar {
             }
         }
     }
-
-    a.your-cart {
-        display: block;
-        right: 15%;
-        line-height: 48px;
-        padding: 0 16px;
-        font-size: 1.4rem;
-        color: #777;
-        text-transform: uppercase;
-        font-weight: bold;
-
-        &:hover {
-            color: #aaa;
-        }
-    }
 }
 
 /**
@@ -147,17 +138,17 @@ div.topbar {
  * This menu is hidden by default and requires a click to show.
  */
 
- $main-menu-transition-duration: 0.25s;
+$main-menu-transition-duration: 0.25s;
 
-div.wrapper {
+div.container {
     position: relative;
     left: 0;
     padding-top: 64px;
-    transition: left $main-menu-transition-duration;
+    transition: left $main-menu-transition-duration ease;
 
     div.topbar {
         left: 0;
-        transition: left $main-menu-transition-duration;
+        transition: left $main-menu-transition-duration ease;
     }
 
     &.main-menu-active {
@@ -172,12 +163,12 @@ div.wrapper {
 nav.main-menu {
     position: fixed;
     z-index: 20;
-    background-color: $primary-color;
+    background-color: $layout-primary-color;
     height: 100%;
     width: 400px;
     top: 0;
     left: -400px;
-    transition: left $main-menu-transition-duration;
+    transition: left $main-menu-transition-duration ease;
 
     &.main-menu-active {
         left: 0;
@@ -191,14 +182,24 @@ nav.main-menu {
         li {
             display: block;
 
+            &.heading,
             a {
-                display: block;
                 height: 64px;
                 line-height: 64px;
                 padding: 0 24px;
-                font-size: 1.75rem;
+                font-size: 1rem;
                 text-transform: uppercase;
                 color: #fff;
+            }
+
+            &.heading {
+                font-weight: bold;
+                font-size: 1.25rem;
+                background-color: #d34937;
+            }
+
+            a {
+                display: block;
 
                 &:hover {
                     background-color: #e0513e;
@@ -212,7 +213,7 @@ nav.main-menu {
  * Adjust the main menu size for devices with a max width of 481px.
  */
 @media all and (max-width: 481px) {
-    div.wrapper {
+    div.container {
         &.main-menu-active,
         &.main-menu-active > div.topbar {
             left: 360px;
@@ -229,7 +230,7 @@ nav.main-menu {
  * Adjust the main menu size for devices with a max width of 421px.
  */
 @media all and (max-width: 421px) {
-    div.wrapper {
+    div.container {
         &.main-menu-active,
         &.main-menu-active > div.topbar {
             left: 300px;
@@ -246,7 +247,7 @@ nav.main-menu {
  * Adjust the main menu size for devices with a max width of 361px.
  */
 @media all and (max-width: 361px) {
-    div.wrapper {
+    div.container {
         &.main-menu-active,
         &.main-menu-active > div.topbar {
             left: 240px;
@@ -265,10 +266,10 @@ div.main-menu-overlay {
     left: 0;
     z-index: 5;
     background-color: rgba(0, 0, 0, 0);
-    transition: background-color $main-menu-transition-duration, width 0s $main-menu-transition-duration, height 0s $main-menu-transition-duration;
+    transition: background-color $main-menu-transition-duration ease, width 0s $main-menu-transition-duration ease, height 0s $main-menu-transition-duration ease;
 
     &.main-menu-active {
-        transition: background-color 0.5s;
+        transition: background-color $main-menu-transition-duration ease;
         background-color: rgba(0, 0, 0, 0.75);
         width: 100%;
         height: 100%;
@@ -300,12 +301,12 @@ div.header {
             &:hover {
                 background-color: rgba(0, 0, 0, 0.3);
 
-                h3 > a {
+                h4 > a {
                     padding: 24px 34px;
                 }
             }
 
-            h3 {
+            h4 {
                 display: inline-block;
                 color: #fff;
                 text-transform: uppercase;
@@ -330,7 +331,7 @@ div.header {
 
 ul.shop-filters {
     list-style: none;
-    font-size: 1.5rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     display: inline-block;
     margin: 0 0 24px 0;
@@ -372,17 +373,17 @@ ul.shop-filters {
         padding-right: 12px;
 
         li {
-            border-color: $primary-color;
+            border-color: $layout-primary-color;
 
             &.filter-label {
-                background-color: $primary-color;
+                background-color: $layout-primary-color;
             }
 
             a {
-                color: $primary-color;
+                color: $layout-primary-color;
 
                 &:hover {
-                    background-color: $primary-color;
+                    background-color: $layout-primary-color;
                 }
             }
         }
@@ -392,17 +393,17 @@ ul.shop-filters {
         padding-left: 12px;
 
         li {
-            border-color: $secondary-color;
+            border-color: $layout-secondary-color;
 
             &.filter-label {
-                background-color: $secondary-color;
+                background-color: $layout-secondary-color;
             }
 
             a {
-                color: $secondary-color;
+                color: $layout-secondary-color;
 
                 &:hover {
-                    background-color: $secondary-color;
+                    background-color: $layout-secondary-color;
                 }
             }
         }
@@ -441,7 +442,7 @@ div.product-listing {
                     border-radius: 32px;
                     color: rgba(0, 0, 0, 0);
                     text-transform: uppercase;
-                    font-size: 1.5rem;
+                    font-size: 0.9rem;
                     transition: color 0.25s, background-color 0.25s;
                 }
 
@@ -449,7 +450,7 @@ div.product-listing {
                     background-color: rgba(255, 255, 255, 0.4);
 
                     span {
-                        background-color: $primary-color;
+                        background-color: $layout-primary-color;
                         color: #fff;
                     }
                 }
@@ -462,11 +463,11 @@ div.product-listing {
 
             h3 {
                 text-transform: uppercase;
-                font-size: 1.5rem;
+                font-size: 1.25rem;
             }
 
             span.price {
-                font-size: 2rem;
+                font-size: 1.75rem;
                 font-weight: bold;
             }
         }
