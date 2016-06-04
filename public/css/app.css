@@ -5836,10 +5836,16 @@ div.topbar {
  */
 div.wrapper {
   position: relative;
+  left: 0;
   padding-top: 64px;
-  transition: transform 0.5s; }
+  transition: left 0.25s; }
+  div.wrapper div.topbar {
+    left: 0;
+    transition: left 0.25s; }
   div.wrapper.main-menu-active {
-    transform: translateX(400px); }
+    left: 400px; }
+    div.wrapper.main-menu-active div.topbar {
+      left: 400px; }
 
 nav.main-menu {
   position: fixed;
@@ -5848,8 +5854,10 @@ nav.main-menu {
   height: 100%;
   width: 400px;
   top: 0;
-  left: 0;
-  transform: translateX(-400px); }
+  left: -400px;
+  transition: left 0.25s; }
+  nav.main-menu.main-menu-active {
+    left: 0; }
   nav.main-menu ul {
     list-style: none;
     margin: 0;
@@ -5871,31 +5879,34 @@ nav.main-menu {
  * Adjust the main menu size for devices with a max width of 481px.
  */
 @media all and (max-width: 481px) {
-  div.wrapper.main-menu-active {
-    transform: translateX(360px); }
+  div.wrapper.main-menu-active,
+  div.wrapper.main-menu-active > div.topbar {
+    left: 360px; }
   nav.main-menu {
     width: 360px;
-    transform: translateX(-360px); } }
+    left: -360px; } }
 
 /**
  * Adjust the main menu size for devices with a max width of 421px.
  */
 @media all and (max-width: 421px) {
-  div.wrapper.main-menu-active {
-    transform: translateX(300px); }
+  div.wrapper.main-menu-active,
+  div.wrapper.main-menu-active > div.topbar {
+    left: 300px; }
   nav.main-menu {
     width: 300px;
-    transform: translateX(-300px); } }
+    left: -300px; } }
 
 /**
  * Adjust the main menu size for devices with a max width of 361px.
  */
 @media all and (max-width: 361px) {
-  div.wrapper.main-menu-active {
-    transform: translateX(240px); }
+  div.wrapper.main-menu-active,
+  div.wrapper.main-menu-active > div.topbar {
+    left: 240px; }
   nav.main-menu {
     width: 240px;
-    transform: translateX(-240px); } }
+    left: -240px; } }
 
 div.main-menu-overlay {
   position: fixed;
@@ -5903,7 +5914,7 @@ div.main-menu-overlay {
   left: 0;
   z-index: 5;
   background-color: transparent;
-  transition: background-color 0.5s, width 0s 0.5s, height 0s 0.5s; }
+  transition: background-color 0.25s, width 0s 0.25s, height 0s 0.25s; }
   div.main-menu-overlay.main-menu-active {
     transition: background-color 0.5s;
     background-color: rgba(0, 0, 0, 0.75);

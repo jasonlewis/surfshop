@@ -147,13 +147,25 @@ div.topbar {
  * This menu is hidden by default and requires a click to show.
  */
 
+ $main-menu-transition-duration: 0.25s;
+
 div.wrapper {
     position: relative;
+    left: 0;
     padding-top: 64px;
-    transition: transform 0.5s;
+    transition: left $main-menu-transition-duration;
+
+    div.topbar {
+        left: 0;
+        transition: left $main-menu-transition-duration;
+    }
 
     &.main-menu-active {
-        transform: translateX(400px);
+        left: 400px;
+
+        div.topbar {
+            left: 400px;
+        }
     }
 }
 
@@ -164,8 +176,12 @@ nav.main-menu {
     height: 100%;
     width: 400px;
     top: 0;
-    left: 0;
-    transform: translateX(-400px);
+    left: -400px;
+    transition: left $main-menu-transition-duration;
+
+    &.main-menu-active {
+        left: 0;
+    }
 
     ul {
         list-style: none;
@@ -197,14 +213,15 @@ nav.main-menu {
  */
 @media all and (max-width: 481px) {
     div.wrapper {
-        &.main-menu-active {
-            transform: translateX(360px);
+        &.main-menu-active,
+        &.main-menu-active > div.topbar {
+            left: 360px;
         }
     }
 
     nav.main-menu {
         width: 360px;
-        transform: translateX(-360px);
+        left: -360px;
     }
 }
 
@@ -213,14 +230,15 @@ nav.main-menu {
  */
 @media all and (max-width: 421px) {
     div.wrapper {
-        &.main-menu-active {
-            transform: translateX(300px);
+        &.main-menu-active,
+        &.main-menu-active > div.topbar {
+            left: 300px;
         }
     }
 
     nav.main-menu {
         width: 300px;
-        transform: translateX(-300px);
+        left: -300px;
     }
 }
 
@@ -229,14 +247,15 @@ nav.main-menu {
  */
 @media all and (max-width: 361px) {
     div.wrapper {
-        &.main-menu-active {
-            transform: translateX(240px);
+        &.main-menu-active,
+        &.main-menu-active > div.topbar {
+            left: 240px;
         }
     }
 
     nav.main-menu {
         width: 240px;
-        transform: translateX(-240px);
+        left: -240px;
     }
 }
 
@@ -246,7 +265,7 @@ div.main-menu-overlay {
     left: 0;
     z-index: 5;
     background-color: rgba(0, 0, 0, 0);
-    transition: background-color 0.5s, width 0s 0.5s, height 0s 0.5s;
+    transition: background-color $main-menu-transition-duration, width 0s $main-menu-transition-duration, height 0s $main-menu-transition-duration;
 
     &.main-menu-active {
         transition: background-color 0.5s;
