@@ -320,7 +320,7 @@ ul.product-filters {
     padding: 0;
     width: 200px;
 
-    @include breakpoint(medium) {
+    @include breakpoint(large) {
         margin-bottom: 24px;
         width: auto;
     }
@@ -358,7 +358,7 @@ ul.product-filters {
                 @include fa-icon("chevron-down");
             }
 
-            @include breakpoint(medium) {
+            @include breakpoint(large) {
                 width: auto;
                 cursor: default;
                 padding: 0 12px;
@@ -402,7 +402,7 @@ ul.product-filters {
                 }
             }
 
-            @include breakpoint(medium) {
+            @include breakpoint(large) {
                 display: block;
                 position: static;
                 width: auto;
@@ -454,7 +454,7 @@ ul.product-filters {
     &.filters {
         z-index: index($z-index-elements, filters);
 
-        @include breakpoint(medium) {
+        @include breakpoint(large) {
             margin-right: 12px;
         }
 
@@ -468,7 +468,7 @@ ul.product-filters {
                 background-color: $layout-primary-color;
             }
 
-            @include breakpoint(small only) {
+            @include breakpoint(medium down) {
                 a {
                     background-color: $layout-primary-color;
 
@@ -478,7 +478,7 @@ ul.product-filters {
                 }
             }
 
-            @include breakpoint(medium) {
+            @include breakpoint(large) {
                 a {
                     color: $layout-primary-color;
 
@@ -496,7 +496,7 @@ ul.product-filters {
     &.brands {
         z-index: index($z-index-elements, brands);
 
-        @include breakpoint(medium) {
+        @include breakpoint(large) {
             margin-left: 12px;
         }
 
@@ -510,7 +510,7 @@ ul.product-filters {
                 background-color: $layout-secondary-color;
             }
 
-            @include breakpoint(small only) {
+            @include breakpoint(medium down) {
                 a {
                     background-color: $layout-secondary-color;
 
@@ -520,7 +520,7 @@ ul.product-filters {
                 }
             }
 
-            @include breakpoint(medium) {
+            @include breakpoint(large) {
                 a {
                     color: $layout-secondary-color;
 
@@ -541,7 +541,7 @@ ul.product-filters {
                 background-color: #fff;
             }
 
-            @include breakpoint(medium) {
+            @include breakpoint(large) {
                 padding: 0 12px;
                 background-color: #fff;
 

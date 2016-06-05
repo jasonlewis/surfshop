@@ -1685,7 +1685,7 @@ ul.product-filters {
   /**
      * The colors for the brands list.
      */ }
-  @media screen and (min-width: 40em) {
+  @media screen and (min-width: 64em) {
     ul.product-filters {
       margin-bottom: 24px;
       width: auto; } }
@@ -1715,7 +1715,7 @@ ul.product-filters {
         position: relative;
         margin-left: 12px;
         top: -2px; }
-      @media screen and (min-width: 40em) {
+      @media screen and (min-width: 64em) {
         ul.product-filters li.filter-label {
           width: auto;
           cursor: default;
@@ -1742,7 +1742,7 @@ ul.product-filters {
         ul.product-filters li.filter-items > ul li:last-child > a {
           border-bottom-width: 3px;
           border-radius: 0 0 3px 3px; }
-      @media screen and (min-width: 40em) {
+      @media screen and (min-width: 64em) {
         ul.product-filters li.filter-items > ul {
           display: block;
           position: static;
@@ -1763,38 +1763,38 @@ ul.product-filters {
     display: block; }
   ul.product-filters.filters {
     z-index: 2; }
-    @media screen and (min-width: 40em) {
+    @media screen and (min-width: 64em) {
       ul.product-filters.filters {
         margin-right: 12px; } }
     ul.product-filters.filters li a, ul.product-filters.filters li.filter-label {
       border-color: #E6624E; }
     ul.product-filters.filters li.filter-label {
       background-color: #E6624E; }
-    @media screen and (max-width: 39.9375em) {
+    @media screen and (max-width: 63.9375em) {
       ul.product-filters.filters li a {
         background-color: #E6624E; }
         ul.product-filters.filters li a:hover {
           color: #E6624E; } }
-    @media screen and (min-width: 40em) {
+    @media screen and (min-width: 64em) {
       ul.product-filters.filters li a {
         color: #E6624E; }
         ul.product-filters.filters li a:hover {
           background-color: #E6624E; } }
   ul.product-filters.brands {
     z-index: 1; }
-    @media screen and (min-width: 40em) {
+    @media screen and (min-width: 64em) {
       ul.product-filters.brands {
         margin-left: 12px; } }
     ul.product-filters.brands li a, ul.product-filters.brands li.filter-label {
       border-color: #4E97E6; }
     ul.product-filters.brands li.filter-label {
       background-color: #4E97E6; }
-    @media screen and (max-width: 39.9375em) {
+    @media screen and (max-width: 63.9375em) {
       ul.product-filters.brands li a {
         background-color: #4E97E6; }
         ul.product-filters.brands li a:hover {
           color: #4E97E6; } }
-    @media screen and (min-width: 40em) {
+    @media screen and (min-width: 64em) {
       ul.product-filters.brands li a {
         color: #4E97E6; }
         ul.product-filters.brands li a:hover {
@@ -1804,7 +1804,7 @@ ul.product-filters {
     color: #fff; }
     ul.product-filters li a:hover {
       background-color: #fff; }
-    @media screen and (min-width: 40em) {
+    @media screen and (min-width: 64em) {
       ul.product-filters li a {
         padding: 0 12px;
         background-color: #fff; }
