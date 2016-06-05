@@ -5,6 +5,7 @@
     "dev": "gulp watch"
   },
   "devDependencies": {
+    "dotenv": "^2.0.0",
     "foundation-sites": "^6.2.3",
     "gulp": "^3.9.1",
     "iconfonts": "^0.9.0",
@@ -12,6 +13,7 @@
     "laravel-elixir-webpack": "https://github.com/joecohens/laravel-elixir-webpack/tarball/master",
     "vue": "^1.0.24",
     "vue-loader": "^8.5.2",
-    "vue-resource": "^0.7.2"
+    "vue-resource": "^0.7.2",
+    "vue-router": "^0.7.13"
   }
 }

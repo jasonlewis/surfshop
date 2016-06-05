@@ -2,11 +2,33 @@
 @import "node_modules/iconfonts/stylesheets/font-awesome";
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
+/**
+ * Some color variables.
+ */
+$layout-primary-color: #E6624E;
+$layout-primary-highlight-color: #F2CCC7;
+$layout-secondary-color: #4E97E6;
+
+/**
+ * Override the foundation primary button color so our layout primary
+ * color. It's reddish, but eh, doesn't really matter.
+ */
+$button-background: $layout-primary-color;
+$button-background-hover: scale-color($button-background, $lightness: -15%);
+
+/**
+ * Include the required foundation modules.
+ */
 @include foundation-global-styles;
+@include foundation-forms;
+@include foundation-button;
 @include foundation-typography;
 @include foundation-flex-classes;
 @include foundation-flex-grid;
 
+/**
+ * Include the Font Awesome font.
+ */
 @include fa-font;
 
 body {
@@ -16,13 +38,6 @@ body {
     overflow-x: hidden;
     margin: 0;
 }
-
-/**
- * Some color variables.
- */
-$layout-primary-color: #E6624E;
-$layout-primary-highlight-color: #F2CCC7;
-$layout-secondary-color: #4E97E6;
 
 /**
  * The z-index ordering of some elements. The order is from lowest to highest.
@@ -143,6 +158,10 @@ div.topbar {
         }
     }
 
+    div.logo a {
+        color: #fff;
+    }
+
     @include breakpoint(small only) {
         div.logo {
             display: none;
@@ -167,7 +186,8 @@ div.topbar {
     }
 
     div.right-menu,
-    div.left-menu {
+    div.left-menu,
+    div.logo {
         button, button:before, a {
             transition: color 0.25s;
         }
@@ -259,19 +279,22 @@ body.navigation-active {
 
 div.header {
     width: 100%;
-    height: 600px;
+    height: 200px;
     margin-bottom: 24px;
+
+    @include breakpoint(medium) {
+        height: 400px;
+    }
 
     div.featured-product {
         display: table;
         background-size: cover;
-        background-position: 0 75%;
         background-repeat: no-repeat;
         width: 100%;
         height: 100%;
 
         div.overlay {
-            display: table-cell;
+            display: none;
             vertical-align: middle;
             text-align: center;
             width: 100%;
@@ -307,6 +330,32 @@ div.header {
                 }
             }
         }
+    }
+}
+
+body.home div.header {
+    height: 600px;
+
+    @include breakpoint(small only) {
+        height: 400px;
+    }
+
+    div.featured-product {
+        background-image: url(/images/surfing-1.jpg);
+        background-position: 0 75%;
+
+        div.overlay {
+            display: table-cell;
+        }
+    }
+}
+
+body.signin div.header > div.featured-product {
+    background-image: url(/images/surfing-2.jpg);
+    background-position: 0 80%;
+
+    @include breakpoint (small only) {
+        background-position: 50% 80%;
     }
 }
 
@@ -617,6 +666,26 @@ div.product-listing {
                 font-size: 1.75rem;
                 font-weight: bold;
             }
+        }
+    }
+}
+
+/**
+ * The Content
+ */
+div.expanded.row.content {
+    h3 {
+        text-transform: uppercase;
+        font-size: 1.75rem;
+        font-weight: bold;
+    }
+
+    a {
+        color: $layout-primary-color;
+        text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
         }
     }
 }

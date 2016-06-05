@@ -34,6 +34,8 @@ elixir.extend('webpack', function (src, options, output) {
     })
     .watch([
         paths.src.path,
+        config.assetsPath + '/js/*.js',
+        config.assetsPath + '/js/**/*.js',
         config.assetsPath + '/js/**/*.vue',
         config.assetsPath + '/js/**/**/*.vue'
     ])
@@ -53,7 +55,8 @@ elixir(function(mix) {
                     test: /\.js$/,
                     loader: 'babel',
                     query: {
-                        presets: ['es2015']
+                        presets: ['es2015'],
+                        compact: true
                     }
                 },
                 {
@@ -62,13 +65,5 @@ elixir(function(mix) {
                 }
             ]
         }
-    }, 'resources/assets/js/build/app.js');
-
-    // Merge the build/app.js file with the VueJS files into a single
-    // app.js file that resides within the public directory.
-    mix.scripts([
-        'node_modules/vue/dist/vue.js',
-        'node_modules/vue-resource/dist/vue-resource.js',
-        'resources/assets/js/build/app.js'
-    ], 'public/js/app.js', './');
+    }, 'public/js/app.js');
 });
