@@ -5,7 +5,7 @@
  * Licensed under MIT Open Source
  */
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-div.topbar button.main-menu-button:before, div.topbar button.cart:before, ul.product-filters li.filter-label span.icon:before, ul.product-filters.is-active > li.filter-label > span.icon:before {
+div.topbar button.navigation-button:before, div.topbar button.cart:before, ul.product-filters li.filter-label span.icon:before, ul.product-filters.is-active > li.filter-label > span.icon:before {
   line-height: 1em;
   font-family: "FontAwesome";
   font-weight: normal;
@@ -17,7 +17,7 @@ div.topbar button.main-menu-button:before, div.topbar button.cart:before, ul.pro
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale; }
 
-div.topbar button.main-menu-button:before {
+div.topbar button.navigation-button:before {
   content: "\f0c9"; }
 
 ul.product-filters li.filter-label span.icon:before {
@@ -1467,11 +1467,57 @@ body {
 /**
  * The z-index ordering of some elements. The order is from lowest to highest.
  */
-/**
- * When the menu is active we want to hide an awkward overflow.
- */
 a, a:hover {
   text-decoration: none; }
+
+nav.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  background-color: #E6624E;
+  height: 100%;
+  width: 240px;
+  transform: translateX(-240px);
+  transition: transform 0.25s ease; }
+  @media screen and (min-width: 40em) {
+    nav.navigation {
+      width: 300px;
+      transform: translateX(-300px); } }
+  @media screen and (min-width: 64em) {
+    nav.navigation {
+      width: 400px;
+      transform: translateX(-400px); } }
+  nav.navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    nav.navigation ul li {
+      display: block; }
+      nav.navigation ul li.heading,
+      nav.navigation ul li a {
+        height: 64px;
+        line-height: 64px;
+        padding: 0 24px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: #fff; }
+      nav.navigation ul li.heading {
+        font-weight: bold;
+        font-size: 1.25rem;
+        background-color: #d34937; }
+      nav.navigation ul li a {
+        display: block; }
+        nav.navigation ul li a:hover {
+          background-color: #e0513e; }
+
+div.navigation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  background-color: transparent;
+  transition: background-color 0.25s ease, width 0s 0.25s ease, height 0s 0.25s ease; }
 
 /**
  * The topbar is a fixed bar that is positioned along the top of the page.
@@ -1479,15 +1525,16 @@ a, a:hover {
  * the right contains user related options and a cart.
  */
 div.topbar {
-  z-index: 5;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
   background-color: #E6624E;
-  width: 100%;
   color: #fff;
+  width: 100%;
   text-transform: uppercase;
   font-size: 1.25rem;
+  transition: transform 0.25s ease;
   /**
      * Both the menu and the cart are buttons. We want to hide borders and backgrounds.
      */
@@ -1544,77 +1591,38 @@ div.container {
   position: relative;
   left: 0;
   padding-top: 64px;
-  transition: left 0.25s ease; }
-  div.container div.topbar {
-    left: 0;
-    transition: left 0.25s ease; }
-  div.container.main-menu-active {
-    left: 240px; }
-    div.container.main-menu-active div.topbar {
-      left: 240px; }
+  transition: transform 0.25s ease; }
 
-nav.main-menu {
-  position: fixed;
-  z-index: 6;
-  background-color: #E6624E;
-  height: 100%;
-  width: 240px;
-  top: 0;
-  left: -240px;
-  transition: left 0.25s ease; }
-  nav.main-menu.main-menu-active {
-    left: 0; }
-  nav.main-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0; }
-    nav.main-menu ul li {
-      display: block; }
-      nav.main-menu ul li.heading,
-      nav.main-menu ul li a {
-        height: 64px;
-        line-height: 64px;
-        padding: 0 24px;
-        font-size: 1rem;
-        text-transform: uppercase;
-        color: #fff; }
-      nav.main-menu ul li.heading {
-        font-weight: bold;
-        font-size: 1.25rem;
-        background-color: #d34937; }
-      nav.main-menu ul li a {
-        display: block; }
-        nav.main-menu ul li a:hover {
-          background-color: #e0513e; }
-
-@media screen and (min-width: 40em) {
-  div.container.main-menu-active,
-  div.container.main-menu-active > div.topbar {
-    left: 300px; }
-  nav.main-menu {
-    width: 300px;
-    left: -300px; } }
-
-@media screen and (min-width: 64em) {
-  div.container.main-menu-active,
-  div.container.main-menu-active > div.topbar {
-    left: 400px; }
-  nav.main-menu {
-    width: 400px;
-    left: -400px; } }
-
-div.main-menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 4;
-  background-color: transparent;
-  transition: background-color 0.25s ease, width 0s 0.25s ease, height 0s 0.25s ease; }
-  div.main-menu-overlay.main-menu-active {
+/**
+ * When the menu is active we want to hide an awkward overflow.
+ * We also want to do a bunch of transformations so things
+ * slide nicely into place.
+ */
+body.navigation-active {
+  overflow: hidden; }
+  body.navigation-active nav.navigation {
+    transform: translateX(0); }
+  body.navigation-active div.navigation-overlay {
     transition: background-color 0.25s ease;
     background-color: rgba(0, 0, 0, 0.75);
     width: 100%;
     height: 100%; }
+  body.navigation-active div.topbar {
+    transform: translateX(240px); }
+    @media screen and (min-width: 40em) {
+      body.navigation-active div.topbar {
+        transform: translateX(300px); } }
+    @media screen and (min-width: 64em) {
+      body.navigation-active div.topbar {
+        transform: translateX(400px); } }
+  body.navigation-active div.container {
+    transform: translateX(240px); }
+    @media screen and (min-width: 40em) {
+      body.navigation-active div.container {
+        transform: translateX(300px); } }
+    @media screen and (min-width: 64em) {
+      body.navigation-active div.container {
+        transform: translateX(400px); } }
 
 div.header {
   width: 100%;

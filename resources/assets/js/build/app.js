@@ -50,75 +50,25 @@
 	
 	var _ProductFilter2 = _interopRequireDefault(_ProductFilter);
 	
+	var _Navigation = __webpack_require__(4);
+	
+	var _Navigation2 = _interopRequireDefault(_Navigation);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	new Vue({
 	    el: '#app',
 	
 	    components: {
-	        ProductFilter: _ProductFilter2.default
+	        ProductFilter: _ProductFilter2.default, Navigation: _Navigation2.default
 	    },
 	
-	    data: {
-	        menu: {
-	            open: false,
-	            elements: {
-	                parent: document.querySelector('nav.main-menu'),
-	                overlay: document.querySelector('div.main-menu-overlay'),
-	                body: document.querySelector('body'),
-	                container: document.querySelector('div.container'),
-	                button: document.querySelector('button.main-menu-button')
-	            }
-	        }
-	    },
+	    data: {},
 	
-	    ready: function ready() {
-	        this.setupPushNavigation();
-	    },
+	    ready: function ready() {},
 	
 	
-	    methods: {
-	        setupPushNavigation: function setupPushNavigation() {
-	            var _this = this;
-	
-	            var stopPropagation = function stopPropagation(event) {
-	                return event.stopPropagation();
-	            };
-	
-	            document.addEventListener('click', function (event) {
-	                if (_this.menu.open) _this.closeMainMenu();
-	            });
-	
-	            this.menu.elements.parent.addEventListener('click', stopPropagation);
-	            this.menu.elements.button.addEventListener('click', stopPropagation);
-	        },
-	
-	        toggleMainMenu: function toggleMainMenu() {
-	            if (this.menu.open) {
-	                this.closeMainMenu();
-	
-	                return;
-	            }
-	
-	            this.openMainMenu();
-	        },
-	        openMainMenu: function openMainMenu() {
-	            this.menu.elements.body.classList.add('main-menu-active');
-	            this.menu.elements.parent.classList.add('main-menu-active');
-	            this.menu.elements.overlay.classList.add('main-menu-active');
-	            this.menu.elements.container.classList.add('main-menu-active');
-	
-	            this.menu.open = true;
-	        },
-	        closeMainMenu: function closeMainMenu() {
-	            this.menu.elements.body.classList.remove('main-menu-active');
-	            this.menu.elements.parent.classList.remove('main-menu-active');
-	            this.menu.elements.overlay.classList.remove('main-menu-active');
-	            this.menu.elements.container.classList.remove('main-menu-active');
-	
-	            this.menu.open = false;
-	        }
-	    }
+	    methods: {}
 	});
 
 /***/ },
@@ -179,10 +129,10 @@
 	
 	    methods: {
 	        toggle: function toggle() {
-	            if (!this.open) {
-	                this.$el.classList.add('is-active');
-	            } else {
+	            if (this.open) {
 	                this.$el.classList.remove('is-active');
+	            } else {
+	                this.$el.classList.add('is-active');
 	            }
 	
 	            this.open = !this.open;
@@ -195,6 +145,101 @@
 /***/ function(module, exports) {
 
 	module.exports = "\n<ul class=\"product-filters {{ type }}\">\n    <li class=\"filter-label\" @click=\"toggle\">{{ label }}<span class=\"icon\"></span></li>\n    <li class=\"filter-items\"><slot></slot></li>\n</ul>\n";
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(5)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] resources/assets/js/components/Navigation.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(6)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "./Navigation.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	    props: {},
+	
+	    data: function data() {
+	        return {
+	            open: false,
+	            elements: {
+	                nav: null,
+	                body: document.querySelector('body'),
+	                button: document.querySelector('button.navigation-button')
+	            }
+	        };
+	    },
+	    ready: function ready() {
+	        this.prepare();
+	    },
+	
+	
+	    methods: {
+	        prepare: function prepare() {
+	            var _this = this;
+	
+	            document.addEventListener('click', function (event) {
+	                if (_this.open) _this.toggle();
+	            });
+	
+	            var stopPropagation = function stopPropagation(event) {
+	                return event.stopPropagation();
+	            };
+	
+	            this.elements.nav = this.$el;
+	
+	            ['nav', 'button'].forEach(function (key) {
+	                _this.elements[key].addEventListener('click', stopPropagation);
+	            });
+	
+	            this.elements.button.addEventListener('click', function (event) {
+	                return _this.toggle();
+	            });
+	        },
+	        toggle: function toggle() {
+	            if (this.open) {
+	                this.elements.body.classList.remove('navigation-active');
+	            } else {
+	                this.elements.body.classList.add('navigation-active');
+	            }
+	
+	            this.open = !this.open;
+	        }
+	    }
+	};
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<nav class=\"navigation\">\n    <slot></slot>\n</nav>\n";
 
 /***/ }
 /******/ ]);

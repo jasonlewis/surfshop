@@ -26,10 +26,10 @@
 
         methods: {
             toggle() {
-                if (! this.open) {
-                    this.$el.classList.add('is-active');
-                } else {
+                if (this.open) {
                     this.$el.classList.remove('is-active');
+                } else {
+                    this.$el.classList.add('is-active');
                 }
 
                 this.open = ! this.open;
