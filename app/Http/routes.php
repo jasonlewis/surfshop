@@ -1,16 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+$router = app('router');
 
-Route::get('/', function () {
+$router->get('/', function () {
     return view('layouts.frontend');
+});
+
+$router->group(['prefix' => 'api'], function ($router) {
+
+    $router->post('auth', 'Auth\AuthController@postLogin');
+
 });

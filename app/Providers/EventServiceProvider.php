@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Providers;
+namespace Lewis\Surf\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Lewis\Shop\Events\SomeEvent' => [
-            'Lewis\Shop\Listeners\EventListener',
+        'Lewis\Surf\Events\SomeEvent' => [
+            'Lewis\Surf\Listeners\EventListener',
         ],
     ];
 

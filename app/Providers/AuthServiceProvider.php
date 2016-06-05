@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Providers;
+namespace Lewis\Surf\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Lewis\Shop\Model' => 'Lewis\Shop\Policies\ModelPolicy',
+        'Lewis\Surf\Model' => 'Lewis\Surf\Policies\ModelPolicy',
     ];
 
     /**

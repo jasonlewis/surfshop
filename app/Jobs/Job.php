@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Jobs;
+namespace Lewis\Surf\Jobs;
 
 use Illuminate\Bus\Queueable;
 

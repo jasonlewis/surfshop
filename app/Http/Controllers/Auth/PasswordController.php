@@ -1,8 +1,8 @@
 <?php
 
-namespace Lewis\Shop\Http\Controllers\Auth;
+namespace Lewis\Surf\Http\Controllers\Auth;
 
-use Lewis\Shop\Http\Controllers\Controller;
+use Lewis\Surf\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

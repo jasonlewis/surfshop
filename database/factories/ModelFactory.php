@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(Lewis\Shop\User::class, function (Faker\Generator $faker) {
+$factory->define(Lewis\Surf\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,

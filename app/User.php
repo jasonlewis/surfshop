@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop;
+namespace Lewis\Surf;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

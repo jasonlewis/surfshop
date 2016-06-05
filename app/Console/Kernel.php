@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Console;
+namespace Lewis\Surf\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;

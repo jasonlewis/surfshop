@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Lewis\Shop\User::class,
+            'model' => Lewis\Surf\User::class,
         ],
 
         // 'users' => [

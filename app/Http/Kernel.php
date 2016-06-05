@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Http;
+namespace Lewis\Surf\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -24,11 +24,8 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \Lewis\Shop\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Lewis\Shop\Http\Middleware\VerifyCsrfToken::class,
+            \Lewis\Surf\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class
         ],
 
         'api' => [
@@ -44,10 +41,10 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Lewis\Shop\Http\Middleware\Authenticate::class,
+        'auth' => \Lewis\Surf\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
-        'guest' => \Lewis\Shop\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \Lewis\Surf\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Events;
+namespace Lewis\Surf\Events;
 
 abstract class Event
 {

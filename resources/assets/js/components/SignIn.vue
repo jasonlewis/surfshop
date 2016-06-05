@@ -8,6 +8,8 @@
                     If you do not have an account yet then please <a v-link="{ name: 'register' }">register</a> for free.
                 </p>
 
+                <error-alert :errors="errors"></error-alert>
+
                 <div class="row">
                     <div class="small-12 column">
                         <label for="email">E-mail</label>
@@ -29,14 +31,23 @@
 
 <script>
     import Auth from '../services/auth.js'
+    import ErrorAlert from './ErrorAlert.vue'
 
     export default {
+        components: {
+            ErrorAlert
+        },
         data() {
             return {
                 credentials: {
                     email: null,
                     password: null
-                }
+                },
+                // The errors will be automatically set from within the Auth service because
+                // we pass this context through to it. Because we have a one-way binding
+                // with the error alert component it will trigger the alert component
+                // to be shown. This is explained in the error alert component.
+                errors: {}
             };
         },
         methods: {

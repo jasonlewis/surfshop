@@ -1,26 +1,18 @@
 <?php
 
-namespace Lewis\Shop\Http\Controllers\Auth;
+namespace Lewis\Surf\Http\Controllers\Auth;
 
-use Lewis\Shop\User;
-use Validator;
-use Lewis\Shop\Http\Controllers\Controller;
+use Lewis\Surf\User;
+use Tymon\JWTAuth\JWTAuth;
+use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
+use Lewis\Surf\Http\Requests\AuthRequest;
+use Lewis\Surf\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
-
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
@@ -30,14 +22,72 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
+    protected $jwt;
+
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(JWTAuth $jwt)
     {
+        $this->jwt = $jwt;
+
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+    }
+
+    public function postLogin(AuthRequest $request)
+    {
+        return $this->login($request);
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return $this->error(401, new MessageBag([$this->getFailedLoginMessage()]));
+    }
+
+    /**
+     * Generate a JWT and return a success response once authenticated.
+     *
+     * @return
+     */
+    protected function authenticated(Request $request, User $user)
+    {
+
+    }
+
+    /**
+     * Redirect the user after determining they are locked out.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function sendLockoutResponse(Request $request)
+    {
+        $seconds = $this->secondsRemainingOnLockout($request);
+
+        return redirect()->back()
+            ->withInput($request->only($this->loginUsername(), 'remember'))
+            ->withErrors([
+                $this->loginUsername() => $this->getLockoutErrorMessage($seconds),
+            ]);
     }
 
     /**

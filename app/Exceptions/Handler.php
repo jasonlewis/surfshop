@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Exceptions;
+namespace Lewis\Surf\Exceptions;
 
 use Exception;
 use Illuminate\Validation\ValidationException;
@@ -45,6 +45,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof ErrorHttpException) {
+            return response()->json($e->getError(), $e->getStatusCode(), $e->getHeaders());
+        }
+
         return parent::render($request, $e);
     }
 }

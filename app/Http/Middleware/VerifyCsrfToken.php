@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Http\Middleware;
+namespace Lewis\Surf\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Providers;
+namespace Lewis\Surf\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -151,10 +151,12 @@ return [
         /*
          * Application Service Providers...
          */
-        Lewis\Shop\Providers\AppServiceProvider::class,
-        Lewis\Shop\Providers\AuthServiceProvider::class,
-        Lewis\Shop\Providers\EventServiceProvider::class,
-        Lewis\Shop\Providers\RouteServiceProvider::class,
+        Lewis\Surf\Providers\AppServiceProvider::class,
+        Lewis\Surf\Providers\AuthServiceProvider::class,
+        Lewis\Surf\Providers\EventServiceProvider::class,
+        Lewis\Surf\Providers\RouteServiceProvider::class,
+
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
 
     ],
 

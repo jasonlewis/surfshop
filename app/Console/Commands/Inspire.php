@@ -1,6 +1,6 @@
 <?php
 
-namespace Lewis\Shop\Console\Commands;
+namespace Lewis\Surf\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

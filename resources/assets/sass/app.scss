@@ -22,6 +22,8 @@ $button-background-hover: scale-color($button-background, $lightness: -15%);
 @include foundation-global-styles;
 @include foundation-forms;
 @include foundation-button;
+@include foundation-callout;
+@include foundation-close-button;
 @include foundation-typography;
 @include foundation-flex-classes;
 @include foundation-flex-grid;
