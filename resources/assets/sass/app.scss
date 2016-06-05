@@ -46,8 +46,14 @@ body {
  */
 $z-index-elements: brands, filters, header-overlay, navigation-overlay, topbar, navigation;
 
-a, a:hover {
-    text-decoration: none;
+a {
+    color: $layout-primary-color;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+        color: $layout-primary-color;
+    }
 }
 
 $navigation-transition-duration: 0.25s;
@@ -99,6 +105,7 @@ nav.navigation {
 
             a {
                 display: block;
+                text-decoration: none;
 
                 &:hover {
                     background-color: #e0513e;
@@ -137,6 +144,10 @@ div.topbar {
     &, ul > li {
         height: 64px;
         line-height: 64px;
+    }
+
+    a {
+        text-decoration: none;
     }
 
     /**
@@ -324,6 +335,7 @@ div.header {
                     border: 3px solid #fff;
                     padding: 14px 24px;
                     border-radius: 3px;
+                    text-decoration: none;
 
                     &:hover {
                         background-color: #fff;
@@ -386,6 +398,10 @@ ul.product-filters {
          * box sizing so that heights and line heights match up. We'll also
          * give them all a solid 3px border.
          */
+        a {
+            text-decoration: none;
+        }
+
         a,
         &.filter-label {
             box-sizing: content-box;
@@ -680,14 +696,5 @@ div.expanded.row.content {
         text-transform: uppercase;
         font-size: 1.75rem;
         font-weight: bold;
-    }
-
-    a {
-        color: $layout-primary-color;
-        text-decoration: underline;
-
-        &:hover {
-            text-decoration: none;
-        }
     }
 }

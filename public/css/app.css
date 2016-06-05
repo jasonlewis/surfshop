@@ -1863,8 +1863,12 @@ body {
 /**
  * The z-index ordering of some elements. The order is from lowest to highest.
  */
-a, a:hover {
-  text-decoration: none; }
+a {
+  color: #E6624E;
+  text-decoration: underline; }
+  a:hover {
+    text-decoration: none;
+    color: #E6624E; }
 
 nav.navigation {
   position: fixed;
@@ -1903,7 +1907,8 @@ nav.navigation {
         font-size: 1.25rem;
         background-color: #d34937; }
       nav.navigation ul li a {
-        display: block; }
+        display: block;
+        text-decoration: none; }
         nav.navigation ul li a:hover {
           background-color: #e0513e; }
 
@@ -1940,6 +1945,8 @@ div.topbar {
   div.topbar, div.topbar ul > li {
     height: 64px;
     line-height: 64px; }
+  div.topbar a {
+    text-decoration: none; }
   div.topbar button {
     background: none;
     border: none;
@@ -2063,7 +2070,8 @@ div.header {
           color: #fff;
           border: 3px solid #fff;
           padding: 14px 24px;
-          border-radius: 3px; }
+          border-radius: 3px;
+          text-decoration: none; }
           div.header div.featured-product div.overlay h4 a:hover {
             background-color: #fff;
             color: #77593A; }
@@ -2126,6 +2134,8 @@ ul.product-filters {
          * The items are hidden by default and will be shown when the menu is
          * hovered.
          */ }
+    ul.product-filters li a {
+      text-decoration: none; }
     ul.product-filters li a, ul.product-filters li.filter-label {
       box-sizing: content-box;
       border-width: 3px;
@@ -2285,11 +2295,5 @@ div.expanded.row.content h3 {
   text-transform: uppercase;
   font-size: 1.75rem;
   font-weight: bold; }
-
-div.expanded.row.content a {
-  color: #E6624E;
-  text-decoration: underline; }
-  div.expanded.row.content a:hover {
-    text-decoration: none; }
 
 /*# sourceMappingURL=app.css.map */
