@@ -1,5 +1,11 @@
+import ProductFilter from './components/ProductFilter.vue';
+
 new Vue({
     el: '#app',
+
+    components: {
+        ProductFilter
+    },
 
     data: {
         menu: {
@@ -14,21 +20,16 @@ new Vue({
         }
     },
 
-    ready: function () {
+    ready() {
         this.setupPushNavigation();
     },
 
     methods: {
-        setupPushNavigation: function () {
-            var app = this,
-                stopPropagation = function (e) {
-                    e.stopPropagation();
-                };
+        setupPushNavigation() {
+            const stopPropagation = event => event.stopPropagation();
 
-            document.addEventListener('click', function (e) {
-                if (app.menu.open) {
-                    app.closeMainMenu();
-                }
+            document.addEventListener('click', event => {
+                if (this.menu.open) this.closeMainMenu();
             });
 
             this.menu.elements.parent.addEventListener('click', stopPropagation);

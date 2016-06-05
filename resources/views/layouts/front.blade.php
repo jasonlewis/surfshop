@@ -53,21 +53,24 @@
 
             <div class="expanded row">
                 <div class="columns text-center">
-                    <ul class="shop-filters filters">
-                        <li class="filter-label">Filter By</li>
-                        <li><a href="#">Newest</a></li>
-                        <li><a href="#">Top Sellers</a></li>
-                        <li><a href="#">Specials</a></li>
-                    </ul>
 
-                    <ul class="shop-filters brands">
-                        <li class="filter-label">Brand</li>
-                        <li><a href="#">Rusty</a></li>
-                        <li><a href="#">Firewire</a></li>
-                        <li><a href="#">Channel Islands</a></li>
-                        <li><a href="#">JS Industries</a></li>
-                        <li><a href="#">More &raquo;</a></li>
-                    </ul>
+                    <product-filter label="Filter By" type="filters">
+                        <ul>
+                            <li><a href="#">Newest</a></li>
+                            <li><a href="#">Top Sellers</a></li>
+                            <li><a href="#">Specials</a></li>
+                        </ul>
+                    </product-filter>
+
+                    <product-filter label="Brand" type="brands">
+                        <ul>
+                            <li><a href="#">Rusty</a></li>
+                            <li><a href="#">Firewire</a></li>
+                            <li><a href="#">Channel Islands</a></li>
+                            <li><a href="#">JS Industries</a></li>
+                            <li><a href="#">More &raquo;</a></li>
+                        </ul>
+                    </product-filter>
                 </div>
             </div>
 

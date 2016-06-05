@@ -5,7 +5,7 @@
  * Licensed under MIT Open Source
  */
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-div.topbar button.main-menu-button:before, div.topbar button.cart:before {
+div.topbar button.main-menu-button:before, div.topbar button.cart:before, ul.product-filters li.filter-label span.icon:before, ul.product-filters.is-active > li.filter-label > span.icon:before {
   line-height: 1em;
   font-family: "FontAwesome";
   font-weight: normal;
@@ -19,6 +19,12 @@ div.topbar button.main-menu-button:before, div.topbar button.cart:before {
 
 div.topbar button.main-menu-button:before {
   content: "\f0c9"; }
+
+ul.product-filters li.filter-label span.icon:before {
+  content: "\f078"; }
+
+ul.product-filters.is-active > li.filter-label > span.icon:before {
+  content: "\f077"; }
 
 div.topbar button.cart:before {
   content: "\f07a"; }
@@ -1459,6 +1465,9 @@ body {
  * Some color variables.
  */
 /**
+ * The z-index ordering of some elements. The order is from lowest to highest.
+ */
+/**
  * When the menu is active we want to hide an awkward overflow.
  */
 a, a:hover {
@@ -1470,7 +1479,7 @@ a, a:hover {
  * the right contains user related options and a cart.
  */
 div.topbar {
-  z-index: 10;
+  z-index: 5;
   position: fixed;
   top: 0;
   left: 0;
@@ -1496,13 +1505,12 @@ div.topbar {
     line-height: 32px;
     height: 64px;
     cursor: pointer; }
-  @media all and (max-width: 481px) {
-    div.topbar div.logo {
-      display: none; }
-    div.topbar ul li:first-child {
-      display: none; }
-    div.topbar ul li:last-child {
-      float: right !important; } }
+  div.topbar div.logo {
+    display: none; }
+  div.topbar ul li:first-child {
+    display: none; }
+  div.topbar ul li:last-child {
+    float: right !important; }
   div.topbar div.right-menu button,
   div.topbar div.left-menu button {
     font-size: 2.5rem; }
@@ -1541,18 +1549,18 @@ div.container {
     left: 0;
     transition: left 0.25s ease; }
   div.container.main-menu-active {
-    left: 400px; }
+    left: 240px; }
     div.container.main-menu-active div.topbar {
-      left: 400px; }
+      left: 240px; }
 
 nav.main-menu {
   position: fixed;
-  z-index: 20;
+  z-index: 6;
   background-color: #E6624E;
   height: 100%;
-  width: 400px;
+  width: 240px;
   top: 0;
-  left: -400px;
+  left: -240px;
   transition: left 0.25s ease; }
   nav.main-menu.main-menu-active {
     left: 0; }
@@ -1579,21 +1587,7 @@ nav.main-menu {
         nav.main-menu ul li a:hover {
           background-color: #e0513e; }
 
-/**
- * Adjust the main menu size for devices with a max width of 481px.
- */
-@media all and (max-width: 481px) {
-  div.container.main-menu-active,
-  div.container.main-menu-active > div.topbar {
-    left: 360px; }
-  nav.main-menu {
-    width: 360px;
-    left: -360px; } }
-
-/**
- * Adjust the main menu size for devices with a max width of 421px.
- */
-@media all and (max-width: 421px) {
+@media screen and (min-width: 40em) {
   div.container.main-menu-active,
   div.container.main-menu-active > div.topbar {
     left: 300px; }
@@ -1601,22 +1595,19 @@ nav.main-menu {
     width: 300px;
     left: -300px; } }
 
-/**
- * Adjust the main menu size for devices with a max width of 361px.
- */
-@media all and (max-width: 361px) {
+@media screen and (min-width: 64em) {
   div.container.main-menu-active,
   div.container.main-menu-active > div.topbar {
-    left: 240px; }
+    left: 400px; }
   nav.main-menu {
-    width: 240px;
-    left: -240px; } }
+    width: 400px;
+    left: -400px; } }
 
 div.main-menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: 4;
   background-color: transparent;
   transition: background-color 0.25s ease, width 0s 0.25s ease, height 0s 0.25s ease; }
   div.main-menu-overlay.main-menu-active {
@@ -1663,51 +1654,154 @@ div.header {
             background-color: #fff;
             color: #77593A; }
 
-ul.shop-filters {
+ul.product-filters {
+  position: relative;
   list-style: none;
   font-size: 0.9rem;
   text-transform: uppercase;
   display: inline-block;
-  margin: 0 0 24px 0;
-  padding: 0; }
-  ul.shop-filters li {
+  margin: 0 0 12px 0;
+  padding: 0;
+  width: 200px;
+  /**
+     * When hovering the menu we want the drop down icon to be
+     * an up facing chevron.
+     */
+  /**
+     * When hovering the menu we will display the hidden filter
+     * items drop down.
+     */
+  /**
+     * The colors for the filter by list.
+     */
+  /**
+     * The colors for the brands list.
+     */ }
+  @media screen and (min-width: 40em) {
+    ul.product-filters {
+      margin-bottom: 24px;
+      width: auto; } }
+  ul.product-filters li {
     float: left;
-    border-width: 3px;
-    border-style: solid;
-    border-right-width: 0; }
-    ul.shop-filters li a {
-      display: block; }
-      ul.shop-filters li a:hover {
-        color: #fff !important; }
-    ul.shop-filters li.filter-label, ul.shop-filters li a {
-      padding: 12px 16px; }
-    ul.shop-filters li.filter-label {
-      color: #fff; }
-    ul.shop-filters li:first-child {
-      border-radius: 3px 0 0 3px; }
-    ul.shop-filters li:last-child {
-      border-radius: 0 3px 3px 0;
-      border-right-width: 3px; }
-  ul.shop-filters.filters {
-    padding-right: 12px; }
-    ul.shop-filters.filters li {
+    height: 48px;
+    line-height: 48px;
+    /**
+         * Anchors, the label, and the drop down list items all have a different
+         * box sizing so that heights and line heights match up. We'll also
+         * give them all a solid 3px border.
+         */
+    /**
+         * The items are hidden by default and will be shown when the menu is
+         * hovered.
+         */ }
+    ul.product-filters li a, ul.product-filters li.filter-label {
+      box-sizing: content-box;
+      border-width: 3px;
+      border-style: solid; }
+    ul.product-filters li.filter-label {
+      border-radius: 3px 3px 3px 3px;
+      cursor: pointer;
+      color: #fff;
+      width: 194px; }
+      ul.product-filters li.filter-label span.icon {
+        position: relative;
+        margin-left: 12px;
+        top: -2px; }
+      @media screen and (min-width: 40em) {
+        ul.product-filters li.filter-label {
+          width: auto;
+          cursor: default;
+          padding: 0 12px;
+          border-radius: 3px 0 0 3px; }
+          ul.product-filters li.filter-label span.icon {
+            display: none; } }
+    ul.product-filters li.filter-items > ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 200px;
+      margin-top: -3px; }
+      ul.product-filters li.filter-items > ul li {
+        width: 100%; }
+        ul.product-filters li.filter-items > ul li a {
+          border-bottom-width: 0; }
+        ul.product-filters li.filter-items > ul li:first-child > a {
+          border-radius: 3px 0 0 0; }
+        ul.product-filters li.filter-items > ul li:last-child > a {
+          border-bottom-width: 3px;
+          border-radius: 0 0 3px 3px; }
+      @media screen and (min-width: 40em) {
+        ul.product-filters li.filter-items > ul {
+          display: block;
+          position: static;
+          width: auto;
+          margin: 0; }
+          ul.product-filters li.filter-items > ul li {
+            width: auto;
+            float: left; }
+            ul.product-filters li.filter-items > ul li a {
+              border-bottom-width: 3px;
+              border-right-width: 0; }
+            ul.product-filters li.filter-items > ul li:first-child > a {
+              border-radius: 0; }
+            ul.product-filters li.filter-items > ul li:last-child > a {
+              border-radius: 0 3px 3px 0;
+              border-right-width: 3px; } }
+  ul.product-filters.is-active li.filter-items > ul {
+    display: block; }
+  ul.product-filters.filters {
+    z-index: 2; }
+    @media screen and (min-width: 40em) {
+      ul.product-filters.filters {
+        margin-right: 12px; } }
+    ul.product-filters.filters li a, ul.product-filters.filters li.filter-label {
       border-color: #E6624E; }
-      ul.shop-filters.filters li.filter-label {
+    ul.product-filters.filters li.filter-label {
+      background-color: #E6624E; }
+    @media screen and (max-width: 39.9375em) {
+      ul.product-filters.filters li a {
         background-color: #E6624E; }
-      ul.shop-filters.filters li a {
+        ul.product-filters.filters li a:hover {
+          color: #E6624E; } }
+    @media screen and (min-width: 40em) {
+      ul.product-filters.filters li a {
         color: #E6624E; }
-        ul.shop-filters.filters li a:hover {
-          background-color: #E6624E; }
-  ul.shop-filters.brands {
-    padding-left: 12px; }
-    ul.shop-filters.brands li {
+        ul.product-filters.filters li a:hover {
+          background-color: #E6624E; } }
+  ul.product-filters.brands {
+    z-index: 1; }
+    @media screen and (min-width: 40em) {
+      ul.product-filters.brands {
+        margin-left: 12px; } }
+    ul.product-filters.brands li a, ul.product-filters.brands li.filter-label {
       border-color: #4E97E6; }
-      ul.shop-filters.brands li.filter-label {
+    ul.product-filters.brands li.filter-label {
+      background-color: #4E97E6; }
+    @media screen and (max-width: 39.9375em) {
+      ul.product-filters.brands li a {
         background-color: #4E97E6; }
-      ul.shop-filters.brands li a {
+        ul.product-filters.brands li a:hover {
+          color: #4E97E6; } }
+    @media screen and (min-width: 40em) {
+      ul.product-filters.brands li a {
         color: #4E97E6; }
-        ul.shop-filters.brands li a:hover {
-          background-color: #4E97E6; }
+        ul.product-filters.brands li a:hover {
+          background-color: #4E97E6; } }
+  ul.product-filters li a {
+    display: block;
+    color: #fff; }
+    ul.product-filters li a:hover {
+      background-color: #fff; }
+    @media screen and (min-width: 40em) {
+      ul.product-filters li a {
+        padding: 0 12px;
+        background-color: #fff; }
+        ul.product-filters li a:hover {
+          color: #fff; } }
 
 div.product-listing div.product {
   margin-bottom: 24px; }

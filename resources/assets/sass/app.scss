@@ -21,7 +21,13 @@ body {
  * Some color variables.
  */
 $layout-primary-color: #E6624E;
+$layout-primary-highlight-color: #F2CCC7;
 $layout-secondary-color: #4E97E6;
+
+/**
+ * The z-index ordering of some elements. The order is from lowest to highest.
+ */
+$z-index-elements: brands, filters, header-overlay, navigation-overlay, topbar, navigation;
 
 /**
  * When the menu is active we want to hide an awkward overflow.
@@ -39,7 +45,7 @@ a, a:hover {
  * the right contains user related options and a cart.
  */
 div.topbar {
-    z-index: 10;
+    z-index: index($z-index-elements, topbar);
     position: fixed;
     top: 0;
     left: 0;
@@ -75,7 +81,7 @@ div.topbar {
         }
     }
 
-    @media all and (max-width: 481px) {
+    @include breakpoint(small) {
         div.logo {
             display: none;
         }
@@ -106,7 +112,7 @@ div.topbar {
 
         button:hover:before,
         a:hover {
-            color: #F2CCC7;
+            color: $layout-primary-highlight-color;
         }
     }
 
@@ -152,22 +158,22 @@ div.container {
     }
 
     &.main-menu-active {
-        left: 400px;
+        left: 240px;
 
         div.topbar {
-            left: 400px;
+            left: 240px;
         }
     }
 }
 
 nav.main-menu {
     position: fixed;
-    z-index: 20;
+    z-index: index($z-index-elements, navigation);
     background-color: $layout-primary-color;
     height: 100%;
-    width: 400px;
+    width: 240px;
     top: 0;
-    left: -400px;
+    left: -240px;
     transition: left $main-menu-transition-duration ease;
 
     &.main-menu-active {
@@ -209,27 +215,7 @@ nav.main-menu {
     }
 }
 
-/**
- * Adjust the main menu size for devices with a max width of 481px.
- */
-@media all and (max-width: 481px) {
-    div.container {
-        &.main-menu-active,
-        &.main-menu-active > div.topbar {
-            left: 360px;
-        }
-    }
-
-    nav.main-menu {
-        width: 360px;
-        left: -360px;
-    }
-}
-
-/**
- * Adjust the main menu size for devices with a max width of 421px.
- */
-@media all and (max-width: 421px) {
+@include breakpoint(medium) {
     div.container {
         &.main-menu-active,
         &.main-menu-active > div.topbar {
@@ -243,20 +229,17 @@ nav.main-menu {
     }
 }
 
-/**
- * Adjust the main menu size for devices with a max width of 361px.
- */
-@media all and (max-width: 361px) {
+@include breakpoint(large) {
     div.container {
         &.main-menu-active,
         &.main-menu-active > div.topbar {
-            left: 240px;
+            left: 400px;
         }
     }
 
     nav.main-menu {
-        width: 240px;
-        left: -240px;
+        width: 400px;
+        left: -400px;
     }
 }
 
@@ -264,7 +247,7 @@ div.main-menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 5;
+    z-index: index($z-index-elements, navigation-overlay);
     background-color: rgba(0, 0, 0, 0);
     transition: background-color $main-menu-transition-duration ease, width 0s $main-menu-transition-duration ease, height 0s $main-menu-transition-duration ease;
 
@@ -329,81 +312,243 @@ div.header {
     }
 }
 
-ul.shop-filters {
+ul.product-filters {
+    position: relative;
     list-style: none;
     font-size: 0.9rem;
     text-transform: uppercase;
     display: inline-block;
-    margin: 0 0 24px 0;
+    margin: 0 0 12px 0;
     padding: 0;
+    width: 200px;
+
+    @include breakpoint(medium) {
+        margin-bottom: 24px;
+        width: auto;
+    }
 
     li {
         float: left;
-        border-width: 3px;
-        border-style: solid;
-        border-right-width: 0;
+        height: 48px;
+        line-height: 48px;
 
-        a {
-            display: block;
-
-            &:hover {
-                color: #fff !important;
-            }
-        }
-
-        &.filter-label, a {
-            padding: 12px 16px;
+        /**
+         * Anchors, the label, and the drop down list items all have a different
+         * box sizing so that heights and line heights match up. We'll also
+         * give them all a solid 3px border.
+         */
+        a,
+        &.filter-label {
+            box-sizing: content-box;
+            border-width: 3px;
+            border-style: solid;
         }
 
         &.filter-label {
+            border-radius: 3px 3px 3px 3px;
+            cursor: pointer;
             color: #fff;
-        }
+            width: 194px;
 
-        &:first-child {
-            border-radius: 3px 0 0 3px;
-        }
-
-        &:last-child {
-            border-radius: 0 3px 3px 0;
-            border-right-width: 3px;
-        }
-    }
-
-    &.filters {
-        padding-right: 12px;
-
-        li {
-            border-color: $layout-primary-color;
-
-            &.filter-label {
-                background-color: $layout-primary-color;
+            span.icon {
+                position: relative;
+                margin-left: 12px;
+                top: -2px;
             }
 
-            a {
-                color: $layout-primary-color;
+            span.icon:before {
+                @include fa-icon("chevron-down");
+            }
 
-                &:hover {
-                    background-color: $layout-primary-color;
+            @include breakpoint(medium) {
+                width: auto;
+                cursor: default;
+                padding: 0 12px;
+                border-radius: 3px 0 0 3px;
+
+                span.icon {
+                    display: none;
+                }
+            }
+        }
+
+        /**
+         * The items are hidden by default and will be shown when the menu is
+         * hovered.
+         */
+        &.filter-items > ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            margin-top: -3px;
+
+            li {
+                width: 100%;
+
+                a {
+                    border-bottom-width: 0;
+                }
+
+                &:first-child > a {
+                    border-radius: 3px 0 0 0;
+                }
+
+                &:last-child > a {
+                    border-bottom-width: 3px;
+                    border-radius: 0 0 3px 3px;
+                }
+            }
+
+            @include breakpoint(medium) {
+                display: block;
+                position: static;
+                width: auto;
+                margin: 0;
+
+                li {
+                    width: auto;
+                    float: left;
+
+                    a {
+                        border-bottom-width: 3px;
+                        border-right-width: 0;
+                    }
+
+                    &:first-child > a {
+                        border-radius: 0;
+                    }
+
+                    &:last-child > a {
+                        border-radius: 0 3px 3px 0;
+                        border-right-width: 3px;
+                    }
                 }
             }
         }
     }
 
-    &.brands {
-        padding-left: 12px;
+    /**
+     * When hovering the menu we want the drop down icon to be
+     * an up facing chevron.
+     */
+    &.is-active > li.filter-label > span.icon:before {
+        @include fa-icon("chevron-up");
+    }
+
+    /**
+     * When hovering the menu we will display the hidden filter
+     * items drop down.
+     */
+    &.is-active {
+        li.filter-items > ul {
+            display: block;
+        }
+    }
+
+    /**
+     * The colors for the filter by list.
+     */
+    &.filters {
+        z-index: index($z-index-elements, filters);
+
+        @include breakpoint(medium) {
+            margin-right: 12px;
+        }
 
         li {
-            border-color: $layout-secondary-color;
+            a,
+            &.filter-label {
+                border-color: $layout-primary-color;
+            }
+
+            &.filter-label {
+                background-color: $layout-primary-color;
+            }
+
+            @include breakpoint(small only) {
+                a {
+                    background-color: $layout-primary-color;
+
+                    &:hover {
+                        color: $layout-primary-color;
+                    }
+                }
+            }
+
+            @include breakpoint(medium) {
+                a {
+                    color: $layout-primary-color;
+
+                    &:hover {
+                        background-color: $layout-primary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * The colors for the brands list.
+     */
+    &.brands {
+        z-index: index($z-index-elements, brands);
+
+        @include breakpoint(medium) {
+            margin-left: 12px;
+        }
+
+        li {
+            a,
+            &.filter-label {
+                border-color: $layout-secondary-color;
+            }
 
             &.filter-label {
                 background-color: $layout-secondary-color;
             }
 
-            a {
-                color: $layout-secondary-color;
+            @include breakpoint(small only) {
+                a {
+                    background-color: $layout-secondary-color;
+
+                    &:hover {
+                        color: $layout-secondary-color;
+                    }
+                }
+            }
+
+            @include breakpoint(medium) {
+                a {
+                    color: $layout-secondary-color;
+
+                    &:hover {
+                        background-color: $layout-secondary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    li {
+        a {
+            display: block;
+            color: #fff;
+
+            &:hover {
+                background-color: #fff;
+            }
+
+            @include breakpoint(medium) {
+                padding: 0 12px;
+                background-color: #fff;
 
                 &:hover {
-                    background-color: $layout-secondary-color;
+                    color: #fff;
                 }
             }
         }
