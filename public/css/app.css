@@ -1552,12 +1552,13 @@ div.topbar {
     line-height: 32px;
     height: 64px;
     cursor: pointer; }
-  div.topbar div.logo {
-    display: none; }
-  div.topbar ul li:first-child {
-    display: none; }
-  div.topbar ul li:last-child {
-    float: right !important; }
+  @media screen and (max-width: 39.9375em) {
+    div.topbar div.logo {
+      display: none; }
+    div.topbar ul li:first-child {
+      display: none; }
+    div.topbar ul li:last-child {
+      float: right !important; } }
   div.topbar div.right-menu button,
   div.topbar div.left-menu button {
     font-size: 2.5rem; }
@@ -1763,9 +1764,6 @@ ul.product-filters {
     display: block; }
   ul.product-filters.filters {
     z-index: 2; }
-    @media screen and (min-width: 64em) {
-      ul.product-filters.filters {
-        margin-right: 12px; } }
     ul.product-filters.filters li a, ul.product-filters.filters li.filter-label {
       border-color: #E6624E; }
     ul.product-filters.filters li.filter-label {
@@ -1776,15 +1774,14 @@ ul.product-filters {
         ul.product-filters.filters li a:hover {
           color: #E6624E; } }
     @media screen and (min-width: 64em) {
-      ul.product-filters.filters li a {
-        color: #E6624E; }
-        ul.product-filters.filters li a:hover {
-          background-color: #E6624E; } }
+      ul.product-filters.filters {
+        margin-right: 12px; }
+        ul.product-filters.filters li a {
+          color: #E6624E; }
+          ul.product-filters.filters li a:hover {
+            background-color: #E6624E; } }
   ul.product-filters.brands {
     z-index: 1; }
-    @media screen and (min-width: 64em) {
-      ul.product-filters.brands {
-        margin-left: 12px; } }
     ul.product-filters.brands li a, ul.product-filters.brands li.filter-label {
       border-color: #4E97E6; }
     ul.product-filters.brands li.filter-label {
@@ -1795,10 +1792,12 @@ ul.product-filters {
         ul.product-filters.brands li a:hover {
           color: #4E97E6; } }
     @media screen and (min-width: 64em) {
-      ul.product-filters.brands li a {
-        color: #4E97E6; }
-        ul.product-filters.brands li a:hover {
-          background-color: #4E97E6; } }
+      ul.product-filters.brands {
+        margin-left: 12px; }
+        ul.product-filters.brands li a {
+          color: #4E97E6; }
+          ul.product-filters.brands li a:hover {
+            background-color: #4E97E6; } }
   ul.product-filters li a {
     display: block;
     color: #fff; }

@@ -143,7 +143,7 @@ div.topbar {
         }
     }
 
-    @include breakpoint(small) {
+    @include breakpoint(small only) {
         div.logo {
             display: none;
         }
@@ -454,10 +454,6 @@ ul.product-filters {
     &.filters {
         z-index: index($z-index-elements, filters);
 
-        @include breakpoint(large) {
-            margin-right: 12px;
-        }
-
         li {
             a,
             &.filter-label {
@@ -467,8 +463,10 @@ ul.product-filters {
             &.filter-label {
                 background-color: $layout-primary-color;
             }
+        }
 
-            @include breakpoint(medium down) {
+        @include breakpoint(medium down) {
+            li {
                 a {
                     background-color: $layout-primary-color;
 
@@ -477,8 +475,12 @@ ul.product-filters {
                     }
                 }
             }
+        }
 
-            @include breakpoint(large) {
+        @include breakpoint(large) {
+            margin-right: 12px;
+
+            li {
                 a {
                     color: $layout-primary-color;
 
@@ -496,10 +498,6 @@ ul.product-filters {
     &.brands {
         z-index: index($z-index-elements, brands);
 
-        @include breakpoint(large) {
-            margin-left: 12px;
-        }
-
         li {
             a,
             &.filter-label {
@@ -509,8 +507,10 @@ ul.product-filters {
             &.filter-label {
                 background-color: $layout-secondary-color;
             }
+        }
 
-            @include breakpoint(medium down) {
+        @include breakpoint(medium down) {
+            li {
                 a {
                     background-color: $layout-secondary-color;
 
@@ -519,8 +519,12 @@ ul.product-filters {
                     }
                 }
             }
+        }
 
-            @include breakpoint(large) {
+        @include breakpoint(large) {
+            margin-left: 12px;
+
+            li {
                 a {
                     color: $layout-secondary-color;
 
