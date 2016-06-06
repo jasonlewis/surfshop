@@ -30,17 +30,17 @@
     <navigation>
         <ul>
             <li><a v-link="{ name: 'home' }">Home</a></li>
+            <li><a v-link="{ name: 'cart' }">Cart (0)</a></li>
             <li><a href="#">Shop</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact Us</a></li>
             <li class="heading">Your Account</li>
 
-            <li><a v-link="{ name: 'cart' }">Cart (0)</a></li>
-
             <li v-if="Auth.guest()"><a v-link="{ name: 'signin' }">Sign In</a></li>
             <li v-if="Auth.guest()"><a href="#">Register</a></li>
 
             <li v-if="Auth.check()"><a v-link="{ name: 'dashboard' }">Dashboard</a></li>
+
             <li v-if="Auth.check()"><a v-link="{ name: 'orders' }">Order History</a></li>
             <li v-if="Auth.check()"><a v-link="{ name: 'signout' }">Sign Out</a></li>
         </ul>

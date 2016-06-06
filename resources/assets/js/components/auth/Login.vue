@@ -30,8 +30,8 @@
 </template>
 
 <script>
-    import Auth from '../services/auth.js'
-    import ErrorAlert from './ErrorAlert.vue'
+    import Auth from '../../services/auth.js'
+    import ErrorAlert from '../ErrorAlert.vue'
 
     export default {
         components: {

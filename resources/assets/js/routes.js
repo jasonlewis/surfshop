@@ -1,8 +1,9 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Home from './components/Home.vue';
-import SignIn from './components/SignIn.vue';
-import SignOut from './components/SignOut.vue';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from './components/Home.vue'
+import Login from './components/auth/Login.vue'
+import Logout from './components/auth/Logout.vue'
+import Dashboard from './components/user/Dashboard.vue'
 
 Vue.use(VueRouter);
 
@@ -15,27 +16,27 @@ router.map({
     },
     '/sign-in': {
         name: 'signin',
-        component: SignIn
+        component: Login
     },
     '/sign-out': {
         name: 'signout',
-        component: SignOut
+        component: Logout
     },
     '/register': {
         name: 'register',
-        component: SignIn
+        component: Login
     },
     '/dashboard': {
         name: 'dashboard',
-        component: SignIn
+        component: Dashboard
     },
     '/orders': {
         name: 'orders',
-        component: SignIn
+        component: Login
     },
     '/cart': {
         name: 'cart',
-        component: SignIn
+        component: Login
     }
 });
 
