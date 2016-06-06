@@ -19,7 +19,7 @@
         </div>
         <div class="columns text-right right-menu">
             <ul>
-                <li v-if="Auth.guest()"><a v-link="{ name: 'signin' }">Sign In</a></li>
+                <li v-show="Auth.guest()"><a v-link="{ name: 'signin' }">Sign In</a></li>
                 <li>
                     <button class="cart"></button>
                 </li>

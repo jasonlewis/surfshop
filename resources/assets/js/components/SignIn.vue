@@ -1,6 +1,6 @@
 <template>
     <div class="expanded row align-center">
-        <div class="small-12 medium-4 column">
+        <div class="small-12 medium-10 large-4 column">
             <form v-on:submit.prevent="attempt">
                 <h3>Sign in to your account</h3>
 

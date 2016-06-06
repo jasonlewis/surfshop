@@ -26,28 +26,23 @@
         methods: {
             prepare() {
                 document.addEventListener('click', event => {
-                    if (this.open) this.toggle();
+                    // If the event target is an anchor and the offset parent is the same
+                    // as the navigation element then we've clicked a link inside the
+                    // navigation. We toggle it from here because depending on the
+                    // users authentication status certain links are added or
+                    // removed from the DOM.
+                    if ((event.target.tagName == 'a' && event.target.offsetParent == this.$el) || this.open) {
+                        this.toggle();
+                    }
                 });
 
-                const stopPropagation = event => event.stopPropagation();
-
-                this.elements.nav = this.$el;
-
-                // Bind the stopPropagation event to both the navigation and the button, this prevents
-                // the above document wide toggler from being fired for these elements.
-                ['nav', 'button'].forEach(key => {
-                    this.elements[key].addEventListener('click', stopPropagation);
-                });
+                // Bind the stopPropagation event to the button, this prevents the above document
+                // wide toggler from being fired for these elements.
+                this.elements.button.addEventListener('click', event => event.stopPropagation());
 
                 // We do want to toggle the navigation if the button is clicked though. But it must
                 // be a direct click on the button itself.
                 this.elements.button.addEventListener('click', event => this.toggle());
-
-                let anchors = this.elements.nav.querySelectorAll('a');
-
-                for (let i = 0; i < anchors.length; ++i) {
-                    anchors[i].addEventListener('click', event => this.toggle());
-                }
             },
             toggle() {
                 if (this.open) {
