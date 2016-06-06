@@ -21,7 +21,7 @@
             <ul>
                 <li v-show="Auth.guest()"><a v-link="{ name: 'signin' }">Sign In</a></li>
                 <li>
-                    <button class="cart"></button>
+                    <button class="cart" v-link="{ name: 'cart' }"></button>
                 </li>
             </ul>
         </div>
@@ -34,6 +34,8 @@
             <li><a href="#">About</a></li>
             <li><a href="#">Contact Us</a></li>
             <li class="heading">Your Account</li>
+
+            <li><a v-link="{ name: 'cart' }">Cart (0)</a></li>
 
             <li v-if="Auth.guest()"><a v-link="{ name: 'signin' }">Sign In</a></li>
             <li v-if="Auth.guest()"><a href="#">Register</a></li>

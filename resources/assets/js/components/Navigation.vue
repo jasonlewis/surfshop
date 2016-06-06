@@ -40,6 +40,12 @@
                 // wide toggler from being fired for these elements.
                 this.elements.button.addEventListener('click', event => event.stopPropagation());
 
+                // Bind the stopPropagation event to the navigation element but only if the
+                // click event occurs directly on the navigation and not on an anchor.
+                this.$el.addEventListener('click', event => {
+                    if (event.target == this.$el)  event.stopPropagation();
+                });
+
                 // We do want to toggle the navigation if the button is clicked though. But it must
                 // be a direct click on the button itself.
                 this.elements.button.addEventListener('click', event => this.toggle());

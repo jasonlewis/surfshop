@@ -32,6 +32,10 @@ router.map({
     '/orders': {
         name: 'orders',
         component: SignIn
+    },
+    '/cart': {
+        name: 'cart',
+        component: SignIn
     }
 });
 
