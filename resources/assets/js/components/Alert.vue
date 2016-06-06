@@ -12,7 +12,7 @@
     export default {
         props: {
             type: {
-                default: 'alert'
+                default: 'error'
             },
             important: {
                 type: Boolean,
