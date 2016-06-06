@@ -140,7 +140,8 @@
 </template>
 
 <script>
-    import ProductFilter from './ProductFilter.vue';
+    import App from '../app.js'
+    import ProductFilter from './ProductFilter.vue'
 
     export default {
         components: {
@@ -149,6 +150,8 @@
 
         data() {
             return {};
-        }
+        },
+
+        ready() {}
     }
 </script>

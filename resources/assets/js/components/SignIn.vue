@@ -52,7 +52,7 @@
         },
         methods: {
             attempt() {
-                Auth.attempt(this, this.credentials, 'redirectPath');
+                Auth.attempt(this, this.credentials, 'dashboard');
             }
         }
     }

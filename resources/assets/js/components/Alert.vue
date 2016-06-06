@@ -1,5 +1,5 @@
 <template>
-    <div v-show="show" class="callout {{ type }}" transition="remove">
+    <div v-show="show" class="callout {{ types[type] }}" transition="remove">
         <button v-if="important" class="close-button" aria-label="Close alert" type="button" @click="show = false">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -25,7 +25,15 @@
         },
 
         data() {
-            return {}
+            return {
+                types: {
+                    info: 'primary',
+                    success: 'success',
+                    error: 'alert',
+                    notice: 'secondary',
+                    warning: 'warning'
+                }
+            }
         }
     }
 </script>
