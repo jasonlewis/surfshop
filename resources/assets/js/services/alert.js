@@ -1,12 +1,14 @@
 export default {
     message: null,
     type: null,
-    show: false,
+    visible: false,
+    shouldHideOnNext: false,
 
     alert(message, type) {
         this.message = message;
         this.type = type;
-        this.show = true;
+        this.visible = true;
+        this.shouldHideOnNext = false;
     },
 
     info(message) {
@@ -27,5 +29,13 @@ export default {
 
     notice(message) {
         this.alert(message, 'notice');
+    },
+
+    expire() {
+        if (this.visible) this.shouldHideOnNext = true;
+    },
+
+    hideIfVisible() {
+        if (this.shouldHideOnNext) this.visible = false;
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div v-show="show" class="callout {{ types[type] }}" transition="remove">
+    <div v-show="show" class="callout {{ types[type] }}">
         <button v-if="important" class="close-button" aria-label="Close alert" type="button" @click="show = false">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -37,13 +37,3 @@
         }
     }
 </script>
-
-<style>
-    .remove-transition {
-        transition: opacity 0.4s ease;
-    }
-
-    .remove-leave, .remove-enter {
-        opacity: 0;
-    }
-</style>

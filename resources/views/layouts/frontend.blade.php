@@ -61,7 +61,7 @@
             <div class="column">
                 <div class="row align-center">
                     <div class="small-12 medium-8 column">
-                        <alert :type="alert.type" :show.sync="alert.show">@{{ alert.message }}</alert>
+                        <alert :type="alert.type" :show.sync="alert.visible">@{{ alert.message }}</alert>
                     </div>
                 </div>
 
