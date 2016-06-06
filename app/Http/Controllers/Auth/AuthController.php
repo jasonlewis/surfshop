@@ -70,7 +70,9 @@ class AuthController extends Controller
      */
     protected function authenticated(Request $request, User $user)
     {
+        $token = $this->jwt->fromUser($user);
 
+        return response()->json(compact('token', 'user'));
     }
 
     /**

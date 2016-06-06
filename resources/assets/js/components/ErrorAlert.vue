@@ -37,8 +37,8 @@
             // updated on the alert component. This allows the alert to be hidden
             // and then reshown again if the form is submitted incorrectly
             // several times in a row.
-            errors() {
-                this.$set('show', true);
+            errors(newVal) {
+                this.$set('show', Object.getOwnPropertyNames(newVal).length > 1);
             }
         }
     }

@@ -8,8 +8,8 @@ export default {
         );
     },
 
-    success(context, response) {
-        console.log('success', response.status);
+    success(context, response, redirect) {
+        context.$set('errors', {});
     },
 
     failed(context, response) {
