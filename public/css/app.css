@@ -2009,31 +2009,17 @@ div.container {
  * We also want to do a bunch of transformations so things
  * slide nicely into place.
  */
-body.navigation-active {
-  overflow: hidden; }
-  body.navigation-active nav.navigation {
-    transform: translateX(0); }
-  body.navigation-active div.navigation-overlay {
-    transition: background-color 0.25s ease;
-    background-color: rgba(0, 0, 0, 0.75);
-    width: 100%;
-    height: 100%; }
-  body.navigation-active div.topbar {
-    transform: translateX(240px); }
-    @media screen and (min-width: 40em) {
-      body.navigation-active div.topbar {
-        transform: translateX(300px); } }
-    @media screen and (min-width: 64em) {
-      body.navigation-active div.topbar {
-        transform: translateX(400px); } }
-  body.navigation-active div.container {
-    transform: translateX(240px); }
-    @media screen and (min-width: 40em) {
-      body.navigation-active div.container {
-        transform: translateX(300px); } }
-    @media screen and (min-width: 64em) {
-      body.navigation-active div.container {
-        transform: translateX(400px); } }
+body.navigation-active nav.navigation {
+  transform: translateX(0); }
+
+body.navigation-active div.topbar {
+  transform: translateX(240px); }
+  @media screen and (min-width: 40em) {
+    body.navigation-active div.topbar {
+      transform: translateX(300px); } }
+  @media screen and (min-width: 64em) {
+    body.navigation-active div.topbar {
+      transform: translateX(400px); } }
 
 div.header {
   width: 100%;

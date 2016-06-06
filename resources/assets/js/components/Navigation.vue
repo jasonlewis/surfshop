@@ -42,6 +42,12 @@
                 // We do want to toggle the navigation if the button is clicked though. But it must
                 // be a direct click on the button itself.
                 this.elements.button.addEventListener('click', event => this.toggle());
+
+                let anchors = this.elements.nav.querySelectorAll('a');
+
+                for (let i = 0; i < anchors.length; ++i) {
+                    anchors[i].addEventListener('click', event => this.toggle());
+                }
             },
             toggle() {
                 if (this.open) {
